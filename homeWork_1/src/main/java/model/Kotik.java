@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Kotik {
 
+    //переменные
     private int satiety = 5;
     private int prettines;
     private int weight;
@@ -11,7 +12,7 @@ public class Kotik {
     private String name;
     private String meow;
 
-    //количество созданых котиков counter++
+    //количество созданных котиков counter++
     private static int counter = 0;
 
     public static int getKotikCounter() {
