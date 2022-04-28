@@ -5,15 +5,16 @@ import animals.interfaces.Run;
 import animals.interfaces.Swim;
 import animals.interfaces.Voice;
 
-public class Duck extends Herbivore implements Swim, Voice, Run {
+public class Giraffe extends Herbivore implements Run, Swim, Voice {
 
-    public Duck(String nameAnimal) {
+    public Giraffe(String nameAnimal) {
         super(nameAnimal);
     }
 
+
     @Override
     public String voice() {
-        return getNameAnimals() + "makes is sound: Quack";
+        return getNameAnimals() + "makes is sound: UAAAAAAAAAA";
     }
 
     @Override

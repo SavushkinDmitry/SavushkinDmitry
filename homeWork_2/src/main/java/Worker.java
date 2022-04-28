@@ -1,6 +1,6 @@
 import animals.Animal;
-import animals.Food;
-import interfaces.Voice;
+import food.Food;
+import animals.interfaces.Voice;
 
 public class Worker {
 
@@ -15,7 +15,7 @@ public class Worker {
     }
 
     public void feed(Animal animals, Food _food) {
-        System.out.println(getNameWorker() + " trying to feed " + animals.getAnimalName() + " the next food: " + _food.getName());
+        System.out.println(getNameWorker() + " trying to feed " + animals.getNameAnimals() + " the next food: " + _food.getName());
         animals.eat(_food);
     }
 

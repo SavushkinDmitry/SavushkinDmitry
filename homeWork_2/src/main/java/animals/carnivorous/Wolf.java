@@ -1,21 +1,31 @@
 package animals.carnivorous;
 
 import animals.Carnivorous;
-import interfaces.Run;
-import interfaces.Swim;
-import interfaces.Voice;
+import animals.interfaces.Run;
+import animals.interfaces.Swim;
+import animals.interfaces.Voice;
 
 public class Wolf extends Carnivorous implements Run, Voice, Swim {
 
-    private String nameAnimal = "Wolf";
+    private String nameAnimal;
 
-    @Override
-    public String getAnimalName() {
-        return nameAnimal;
+    public Wolf(String nameAnimal) {
+        super(nameAnimal);
     }
+
 
     @Override
     public String voice() {
-        return "Wolf woof";
+        return getNameAnimals() + "makes is sound: woof";
+    }
+
+    @Override
+    public void swim() {
+        System.out.println(getNameAnimals() + " swims");
+    }
+
+    @Override
+    public void run() {
+        System.out.println("The " + getNameAnimals() + " is running");
     }
 }

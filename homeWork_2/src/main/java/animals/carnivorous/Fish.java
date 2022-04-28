@@ -1,14 +1,19 @@
 package animals.carnivorous;
 
 import animals.Carnivorous;
-import interfaces.Swim;
+import animals.interfaces.Swim;
 
 public class Fish extends Carnivorous implements Swim {
 
-    private String nameAnimal = "Piranha";
+    private String nameAnimal;
+
+    public Fish(String nameAnimal) {
+        super(nameAnimal);
+    }
+
 
     @Override
-    public String getAnimalName() {
-        return nameAnimal;
+    public void swim() {
+        System.out.println(getNameAnimals() + " swims");
     }
 }

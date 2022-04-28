@@ -1,11 +1,13 @@
+import food.Food;
 import animals.carnivorous.Bird;
 import animals.carnivorous.Fish;
 import animals.carnivorous.Wolf;
 import animals.herbivore.Duck;
+import animals.herbivore.Giraffe;
 import animals.herbivore.Sheep;
 import food.Grass;
 import food.Meat;
-import animals.herbivore.Cow;
+import animals.interfaces.Swim;
 
 public class Zoo {
     public static void main(String[] args) {
@@ -15,29 +17,42 @@ public class Zoo {
         Animal fish = new Fish();
         Animal bird = new Bird();
         Animal wolf = new Wolf();*/
-        Cow cow = new Cow();
-        Duck duck = new Duck();
-        Sheep sheep = new Sheep();
-        Fish fish = new Fish();
-        Bird bird = new Bird();
-        Wolf wolf = new Wolf();
+        Giraffe girrafe = new Giraffe("Girrafe");
+        Duck duck = new Duck("Duck");
+        Sheep sheep = new Sheep("Sheep");
+        Fish fish = new Fish("Fish");
+        Bird bird = new Bird("Bird");
+        Wolf wolf = new Wolf("Wolf");
 
 
-        Grass grass = new Grass();
-        Meat meat = new Meat();
+        Food grass = new Grass();
+        Food meat = new Meat();
 
         Worker Dmitry = new Worker("Dmitry");
 
-        Dmitry.feed(cow, meat);
-        Dmitry.feed(cow, grass);
+        System.out.println("    --Worker Dmitry is feed animals--   ");
+        Dmitry.feed(girrafe, meat);
+        Dmitry.feed(girrafe, grass);
         Dmitry.feed(fish, meat);
         Dmitry.feed(wolf, grass);
-
-        Dmitry.getVoice(cow);
+        System.out.println("    --Animals make sounds--   ");
+        Dmitry.getVoice(girrafe);
         Dmitry.getVoice(wolf);
+        System.out.println("    --Animal methods test--   ");
+        girrafe.run();
+        bird.fly();
 
-        //Next error
+        //the next line error
         //Dmitry.feed(fish);
+
+        Swim[] pond = new Swim[] {girrafe, fish, duck, wolf};
+
+        System.out.println("Pond");
+        for (int i = 0; i < pond.length; i++) {
+            pond[i].swim();
+        }
+
+
 
     }
 

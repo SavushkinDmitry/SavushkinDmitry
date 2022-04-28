@@ -1,20 +1,24 @@
 package animals.herbivore;
 
 import animals.Herbivore;
-import interfaces.Run;
-import interfaces.Voice;
+import animals.interfaces.Run;
+import animals.interfaces.Voice;
 
 public class Sheep extends Herbivore implements Run, Voice {
 
-    private String nameAnimal = "Sheep";
+    private String nameAnimal;
 
-    @Override
-    public String getAnimalName() {
-        return nameAnimal;
+    public Sheep(String nameAnimal) {
+        super(nameAnimal);
     }
 
     @Override
     public String voice() {
-        return "Sheep baa";
+        return getNameAnimals() + "makes is sound: Baaaa";
+    }
+
+    @Override
+    public void run() {
+        System.out.println("The " + getNameAnimals() + " is running");
     }
 }
