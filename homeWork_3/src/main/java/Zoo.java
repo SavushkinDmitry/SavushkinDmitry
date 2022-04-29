@@ -34,6 +34,8 @@ public class Zoo {
         herbivoreAviary.addAnimal(sheep); //Объект не добавится и выведит соответствующее сообщение
         herbivoreAviary.addAnimal(girrafe);
 
+        herbivoreAviary.removeAnimal(sheep);
+
         herbivoreAviary.getAnimalLink(sheep.getNameAnimals());
 
         herbivoreAviary.getAnimals();
