@@ -1,6 +1,6 @@
 import animals.Animal;
-import animals.Food;
 import animals.interfaces.Voice;
+import food.Food;
 import food.WrongFoodException;
 
 public class Worker {

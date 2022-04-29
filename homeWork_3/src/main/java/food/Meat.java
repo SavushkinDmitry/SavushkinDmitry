@@ -1,7 +1,5 @@
 package food;
 
-import animals.Food;
-
 public class Meat extends Food {
 
     @Override
@@ -10,7 +8,7 @@ public class Meat extends Food {
     }
 
     @Override
-    protected int addSatiety() {
+    public int addSatiety() {
         return 5;
     }
 

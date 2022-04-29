@@ -1,6 +1,7 @@
 package animals;
 
 import animals.aviary.Size;
+import food.Food;
 import food.Grass;
 import food.WrongFoodException;
 

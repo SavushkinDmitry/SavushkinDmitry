@@ -6,7 +6,7 @@ public enum Size {
     LARGE(3),
     HOUG(4);
 
-    private final int value;
+    private int value;
 
     Size(int value) {
         this.value = value;

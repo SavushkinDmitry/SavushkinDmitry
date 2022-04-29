@@ -1,4 +1,4 @@
-package animals;
+package food;
 
 public abstract class Food {
     private String nameFood;
@@ -6,6 +6,6 @@ public abstract class Food {
     public String getName() {
         return nameFood;
     }
-    protected abstract int addSatiety();
+    public abstract int addSatiety();
 
 }

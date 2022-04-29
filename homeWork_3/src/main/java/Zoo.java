@@ -1,5 +1,5 @@
 import animals.Carnivorous;
-import animals.Food;
+import food.Food;
 import animals.Herbivore;
 import animals.aviary.Aviary;
 import animals.aviary.Size;
@@ -20,6 +20,7 @@ public class Zoo {
         Giraffe girrafe = new Giraffe("Giraffe", Size.HOUG);
         Duck duck = new Duck("Duck", Size.SMALL);
         Sheep sheep = new Sheep("Sheep", Size.MEDIUM);
+        Sheep sheeps = new Sheep("Sheep", Size.MEDIUM);
         Fish fish = new Fish("Fish", Size.SMALL);
         Bird bird = new Bird("Bird", Size.LARGE);
         Wolf wolf = new Wolf("Wolf", Size.MEDIUM);
@@ -29,10 +30,13 @@ public class Zoo {
 
         carnivorousAviary.addAnimal(wolf);
         herbivoreAviary.addAnimal(sheep);
+        herbivoreAviary.addAnimal(sheeps); //Тоже не добавится, так как поля объекта идентичны с объектом sheep
+        herbivoreAviary.addAnimal(sheep); //Объект не добавится и выведит соответствующее сообщение
         herbivoreAviary.addAnimal(girrafe);
 
         herbivoreAviary.getAnimalLink(sheep.getNameAnimals());
-        herbivoreAviary.removeAnimal(girrafe);
+
+        herbivoreAviary.getAnimals();
 
 
         Food grass = new Grass();
