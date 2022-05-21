@@ -15,7 +15,7 @@ import food.Meat;
 import food.WrongFoodException;
 
 public class Zoo {
-    public static void main(String[] args) throws WrongFoodException {
+    public static void main(String[] args) {
 
         Giraffe girrafe = new Giraffe("Giraffe", Size.HOUG);
         Duck duck = new Duck("Duck", Size.SMALL);
@@ -30,7 +30,7 @@ public class Zoo {
 
         carnivorousAviary.addAnimal(wolf);
         herbivoreAviary.addAnimal(sheep);
-        herbivoreAviary.addAnimal(sheeps); //Тоже не добавится, так как поля объекта идентичны с объектом sheep
+        herbivoreAviary.addAnimal(sheeps); //Тоже не добавится, так как поля объекта sheeps идентичны с объектом sheep
         herbivoreAviary.addAnimal(sheep); //Объект не добавится и выведит соответствующее сообщение
         herbivoreAviary.addAnimal(girrafe);
 
@@ -46,10 +46,14 @@ public class Zoo {
 
         Worker Dmitry = new Worker("Dmitry");
         System.out.println("    --Worker Dmitry is feed animals--   ");
-        Dmitry.feed(girrafe, meat);
-        Dmitry.feed(girrafe, grass);
-        Dmitry.feed(fish, meat);
-        Dmitry.feed(wolf, grass);
+        try {
+            Dmitry.feed(girrafe, meat);
+            Dmitry.feed(girrafe, grass);
+            Dmitry.feed(fish, meat);
+            Dmitry.feed(wolf, grass);
+        } catch(WrongFoodException wfe) {
+            wfe.getMessage();
+        }
         System.out.println("    --Animals make sounds--   ");
         Dmitry.getVoice(girrafe);
         Dmitry.getVoice(wolf);
@@ -60,7 +64,7 @@ public class Zoo {
         //Dmitry.feed(fish);
         Swim[] pond = new Swim[]{girrafe, fish, duck, wolf};
 
-        System.out.println("Pond");
+        System.out.println("    --Pond--    ");
         for (int i = 0; i < pond.length; i++) {
             pond[i].swim();
         }
