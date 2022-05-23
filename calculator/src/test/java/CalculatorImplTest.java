@@ -57,10 +57,18 @@ public class CalculatorImplTest {
         };
     }
 
+    @DataProvider
+    public Object[][] testFormat() {
+        return new Object[][] {
+                {"abc", "23"},
+                {"24", "%ts"}
+        };
+    }
+
     @Test(dataProvider = "testMultiply")
     public void twoDigitsMultiply(String result, String n1, String n2) {
         given(ioService.readMessage()).willReturn(n1).willReturn(n2);
-        calculatorFunction.readTwoDigitsAndMultiply(result);
+        calculatorFunction.readTwoDigitsAndMultiply();
         inOrder.verify(ioService, times(2)).readMessage();
         inOrder.verify(ioService, times(1)).out(result);
     }
@@ -68,7 +76,7 @@ public class CalculatorImplTest {
     @Test(dataProvider = "testDivide")
     public void twoDigitsDivide(String result, String n1, String n2) {
         given(ioService.readMessage()).willReturn(n1).willReturn(n2);
-        calculatorFunction.readTwoDigitsAndDivide(result);
+        calculatorFunction.readTwoDigitsAndDivide();
         inOrder.verify(ioService, times(2)).readMessage();
         inOrder.verify(ioService, times(1)).out(result);
     }
@@ -76,7 +84,7 @@ public class CalculatorImplTest {
     @Test(dataProvider = "testSum")
     public void twoDigitsSum(String result, String n1, String n2) {
         given(ioService.readMessage()).willReturn(n1).willReturn(n2);
-        calculatorFunction.readTwoDigitsAndSum(result);
+        calculatorFunction.readTwoDigitsAndSum();
         inOrder.verify(ioService, times(2)).readMessage();
         inOrder.verify(ioService, times(1)).out(result);
     }
@@ -84,10 +92,41 @@ public class CalculatorImplTest {
     @Test(dataProvider = "testSubtract")
     public void twoDigitsSubtract(String result, String n1, String n2) {
         given(ioService.readMessage()).willReturn(n1).willReturn(n2);
-        calculatorFunction.readTwoDigitsAndSubtract(result);
+        calculatorFunction.readTwoDigitsAndSubtract();
         inOrder.verify(ioService, times(2)).readMessage();
         inOrder.verify(ioService, times(1)).out(result);
     }
 
+    @Test(dataProvider = "testFormat")
+    public void numberFormatMultiplyException(String n1, String n2) {
+        given(ioService.readMessage()).willReturn("").willReturn(n2);
+        given(ioService.readMessage()).willReturn(n1).willReturn("");
+
+        Assert.assertThrows(NumberFormatException.class, () -> calculatorFunction.readTwoDigitsAndMultiply());
+    }
+
+    @Test(dataProvider = "testFormat")
+    public void numberFormatDivideException(String n1, String n2) {
+        given(ioService.readMessage()).willReturn("").willReturn(n2);
+        given(ioService.readMessage()).willReturn(n1).willReturn("");
+
+        Assert.assertThrows(NumberFormatException.class, () -> calculatorFunction.readTwoDigitsAndDivide());
+    }
+
+    @Test(dataProvider = "testFormat")
+    public void numberFormatSumException(String n1, String n2) {
+        given(ioService.readMessage()).willReturn("").willReturn(n2);
+        given(ioService.readMessage()).willReturn(n1).willReturn("");
+
+        Assert.assertThrows(NumberFormatException.class, () -> calculatorFunction.readTwoDigitsAndSum());
+    }
+
+    @Test(dataProvider = "testFormat")
+    public void numberFormatSubtractException(String n1, String n2) {
+        given(ioService.readMessage()).willReturn("").willReturn(n2);
+        given(ioService.readMessage()).willReturn(n1).willReturn("");
+
+        Assert.assertThrows(NumberFormatException.class, () -> calculatorFunction.readTwoDigitsAndSubtract());
+    }
 
 }
