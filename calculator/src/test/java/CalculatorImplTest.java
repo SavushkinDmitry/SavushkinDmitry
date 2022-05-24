@@ -14,6 +14,8 @@ import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 public class CalculatorImplTest {
 
+    private String prompt;
+
     private IOService ioService;
     private InOrder inOrder;
     private CalculatorFunction calculatorFunction;
@@ -28,32 +30,33 @@ public class CalculatorImplTest {
     @DataProvider
     public Object[][] testMultiply() {
         return new Object[][] {
-                {"2 * 2 = 4", "2", "2"},
-                {"2 * -3 = -6", "2", "-3"}
+                {"10 * 1 = 10", "10", "1"},
+                {"11 * 0 = 0", "11", "0"},
+                {"-10 * 1 = -10", "-10", "1"}
         };
     }
 
     @DataProvider
     public Object[][] testDivide() {
         return new Object[][] {
-                {"2 / 2 = 1", "2", "2"},
-                {"6 / 2 = 3", "6", "2"}
+                {"10 / 1 = 10", "10", "1"},
+                {"11 / -1 = -11", "11", "-1"}
         };
     }
 
     @DataProvider
     public Object[][] testSum() {
         return new Object[][] {
-                {"10 + 5 = 15", "10", "5"},
-                {"6 + 2 = 8", "6", "2"}
+                {"10 + 1 = 11", "10", "1"},
+                {"-10 + 0 = -10", "-10", "0"}
         };
     }
 
     @DataProvider
     public Object[][] testSubtract() {
         return new Object[][] {
-                {"5 - 1 = 4", "5", "1"},
-                {"-3 - 3 = -6",  "-3", "3"}
+                {"10 - 1 = 9", "10", "1"},
+                {"-10 - 0 = -10",  "-10", "0"}
         };
     }
 
@@ -68,7 +71,8 @@ public class CalculatorImplTest {
     @Test(dataProvider = "testMultiply")
     public void twoDigitsMultiply(String result, String n1, String n2) {
         given(ioService.readMessage()).willReturn(n1).willReturn(n2);
-        calculatorFunction.readTwoDigitsAndMultiply();
+        calculatorFunction.readTwoDigitsAndMultiply(prompt);
+        inOrder.verify(ioService, times(1)).out(prompt);
         inOrder.verify(ioService, times(2)).readMessage();
         inOrder.verify(ioService, times(1)).out(result);
     }
@@ -76,7 +80,8 @@ public class CalculatorImplTest {
     @Test(dataProvider = "testDivide")
     public void twoDigitsDivide(String result, String n1, String n2) {
         given(ioService.readMessage()).willReturn(n1).willReturn(n2);
-        calculatorFunction.readTwoDigitsAndDivide();
+        calculatorFunction.readTwoDigitsAndDivide(prompt);
+        inOrder.verify(ioService, times(1)).out(prompt);
         inOrder.verify(ioService, times(2)).readMessage();
         inOrder.verify(ioService, times(1)).out(result);
     }
@@ -84,7 +89,8 @@ public class CalculatorImplTest {
     @Test(dataProvider = "testSum")
     public void twoDigitsSum(String result, String n1, String n2) {
         given(ioService.readMessage()).willReturn(n1).willReturn(n2);
-        calculatorFunction.readTwoDigitsAndSum();
+        calculatorFunction.readTwoDigitsAndSum(prompt);
+        inOrder.verify(ioService, times(1)).out(prompt);
         inOrder.verify(ioService, times(2)).readMessage();
         inOrder.verify(ioService, times(1)).out(result);
     }
@@ -92,7 +98,8 @@ public class CalculatorImplTest {
     @Test(dataProvider = "testSubtract")
     public void twoDigitsSubtract(String result, String n1, String n2) {
         given(ioService.readMessage()).willReturn(n1).willReturn(n2);
-        calculatorFunction.readTwoDigitsAndSubtract();
+        calculatorFunction.readTwoDigitsAndSubtract(prompt);
+        inOrder.verify(ioService, times(1)).out(prompt);
         inOrder.verify(ioService, times(2)).readMessage();
         inOrder.verify(ioService, times(1)).out(result);
     }

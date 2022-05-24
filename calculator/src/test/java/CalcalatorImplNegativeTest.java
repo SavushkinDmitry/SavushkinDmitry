@@ -30,7 +30,8 @@ public class CalcalatorImplNegativeTest {
         return new Object[][] {
                 {"(' * <& = ('<&", "('", "<&"},
                 {"aa * bb = aabb", "aa", "bb"},
-                {"10 * 0 = 10", "10", "0"}
+                {"10 * 0 = 10", "10", "0"},
+                {"-10 * 1 = 10", "-10", "1"}
         };
     }
 
@@ -39,8 +40,8 @@ public class CalcalatorImplNegativeTest {
         return new Object[][] {
                 {"(' / <& = '&", "('", "<&"},
                 {"aa / bb = ab", "aa", "bb"},
-                {"5 / 0 = 5","5", "0"},
-                {"-15 / 3 = 5", "-15", "3"}
+                {"10 / 0 = 10","10", "0"},
+                {"-10 / 1 = 10", "-10", "1"}
         };
     }
 
@@ -49,8 +50,8 @@ public class CalcalatorImplNegativeTest {
         return new Object[][] {
                 {"(' + <& = ('<&", "('", "<&"},
                 {"aa + bb = aabb", "aa", "bb"},
-                {"5 + 10 = 5", "5", "10"},
-                {"-24 + 15 = 9", "-24", "15"}
+                {"10 + 1 = 12", "10", "1"},
+                {"-10 + 0 = 9", "-10", "0"}
         };
     }
 
@@ -59,14 +60,15 @@ public class CalcalatorImplNegativeTest {
         return new Object[][] {
                 {"!& - #$ = !$", "!&", "!$"},
                 {"aa - bb = ba", "aa", "bb"},
-                {"10 - 5 = 4", "10", "5"}
+                {"10 - 1 = 0", "10", "1"},
+                {"-10 - 0 = 10", "-10", "0"}
         };
     }
 
     @Test(dataProvider = "testMultiply")
     public void twoDigitsMultiply(String result, String n1, String n2) {
         given(ioService.readMessage()).willReturn(n1).willReturn(n2);
-        calculatorFunction.readTwoDigitsAndMultiply(result);
+        calculatorFunction.readTwoDigitsAndMultiply();
         inOrder.verify(ioService, times(2)).readMessage();
         inOrder.verify(ioService, times(1)).out(result);
     }
@@ -74,7 +76,7 @@ public class CalcalatorImplNegativeTest {
     @Test(dataProvider = "testDivide")
     public void twoDigitsDivide(String result, String n1, String n2) {
         given(ioService.readMessage()).willReturn(n1).willReturn(n2);
-        calculatorFunction.readTwoDigitsAndDivide(result);
+        calculatorFunction.readTwoDigitsAndDivide();
         inOrder.verify(ioService, times(2)).readMessage();
         inOrder.verify(ioService, times(1)).out(result);
     }
@@ -82,7 +84,7 @@ public class CalcalatorImplNegativeTest {
     @Test(dataProvider = "testSum")
     public void twoDigitsSum(String result, String n1, String n2) {
         given(ioService.readMessage()).willReturn(n1).willReturn(n2);
-        calculatorFunction.readTwoDigitsAndSum(result);
+        calculatorFunction.readTwoDigitsAndSum();
         inOrder.verify(ioService, times(2)).readMessage();
         inOrder.verify(ioService, times(1)).out(result);
     }
@@ -90,7 +92,7 @@ public class CalcalatorImplNegativeTest {
     @Test(dataProvider = "testSubtract")
     public void twoDigitsSubtract(String result, String n1, String n2) {
         given(ioService.readMessage()).willReturn(n1).willReturn(n2);
-        calculatorFunction.readTwoDigitsAndSubtract(result);
+        calculatorFunction.readTwoDigitsAndSubtract();
         inOrder.verify(ioService, times(2)).readMessage();
         inOrder.verify(ioService, times(1)).out(result);
     }
