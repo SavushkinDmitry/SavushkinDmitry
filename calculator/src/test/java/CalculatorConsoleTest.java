@@ -49,6 +49,4 @@ public class CalculatorConsoleTest {
         Assert.assertEquals(bos.toString(), TEXT_TO_PRINT1 + EOL);
     }
 
-
-
 }

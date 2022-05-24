@@ -5,6 +5,7 @@ import services.IOService;
 
 public class Main {
     public static void main(String[] args) {
+
         IOService consoleIO = new ConsoleIOService();
 
         consoleIO.out("Это калькулятор!");

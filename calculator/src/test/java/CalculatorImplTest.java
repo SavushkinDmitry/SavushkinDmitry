@@ -29,7 +29,7 @@ public class CalculatorImplTest {
 
     @DataProvider
     public Object[][] testMultiply() {
-        return new Object[][] {
+        return new Object[][]{
                 {"10 * 1 = 10", "10", "1"},
                 {"11 * 0 = 0", "11", "0"},
                 {"-10 * 1 = -10", "-10", "1"}
@@ -38,7 +38,7 @@ public class CalculatorImplTest {
 
     @DataProvider
     public Object[][] testDivide() {
-        return new Object[][] {
+        return new Object[][]{
                 {"10 / 1 = 10", "10", "1"},
                 {"11 / -1 = -11", "11", "-1"}
         };
@@ -46,7 +46,7 @@ public class CalculatorImplTest {
 
     @DataProvider
     public Object[][] testSum() {
-        return new Object[][] {
+        return new Object[][]{
                 {"10 + 1 = 11", "10", "1"},
                 {"-10 + 0 = -10", "-10", "0"}
         };
@@ -54,15 +54,15 @@ public class CalculatorImplTest {
 
     @DataProvider
     public Object[][] testSubtract() {
-        return new Object[][] {
+        return new Object[][]{
                 {"10 - 1 = 9", "10", "1"},
-                {"-10 - 0 = -10",  "-10", "0"}
+                {"-10 - 0 = -10", "-10", "0"}
         };
     }
 
     @DataProvider
     public Object[][] testFormat() {
-        return new Object[][] {
+        return new Object[][]{
                 {"abc", "23"},
                 {"24", "%ts"}
         };

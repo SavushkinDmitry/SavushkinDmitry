@@ -1,6 +1,6 @@
 package services;
 
-public class CalculatorImpl implements CalculatorFunction{
+public class CalculatorImpl implements CalculatorFunction {
 
     private IOService ioService;
 

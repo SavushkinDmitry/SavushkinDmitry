@@ -27,7 +27,7 @@ public class CalcalatorImplNegativeTest {
 
     @DataProvider
     public Object[][] testMultiply() {
-        return new Object[][] {
+        return new Object[][]{
                 {"(' * <& = ('<&", "('", "<&"},
                 {"aa * bb = aabb", "aa", "bb"},
                 {"10 * 0 = 10", "10", "0"},
@@ -37,17 +37,17 @@ public class CalcalatorImplNegativeTest {
 
     @DataProvider
     public Object[][] testDivide() {
-        return new Object[][] {
+        return new Object[][]{
                 {"(' / <& = '&", "('", "<&"},
                 {"aa / bb = ab", "aa", "bb"},
-                {"10 / 0 = 10","10", "0"},
+                {"10 / 0 = 10", "10", "0"},
                 {"-10 / 1 = 10", "-10", "1"}
         };
     }
 
     @DataProvider
     public Object[][] testSum() {
-        return new Object[][] {
+        return new Object[][]{
                 {"(' + <& = ('<&", "('", "<&"},
                 {"aa + bb = aabb", "aa", "bb"},
                 {"10 + 1 = 12", "10", "1"},
@@ -57,7 +57,7 @@ public class CalcalatorImplNegativeTest {
 
     @DataProvider
     public Object[][] testSubtract() {
-        return new Object[][] {
+        return new Object[][]{
                 {"!& - #$ = !$", "!&", "!$"},
                 {"aa - bb = ba", "aa", "bb"},
                 {"10 - 1 = 0", "10", "1"},
