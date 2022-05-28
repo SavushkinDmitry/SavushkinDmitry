@@ -18,35 +18,35 @@ public class AvitoSelen {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(8));
 
-        //Шаг 1
+        //РЁР°Рі 1
         driver.get("https://www.avito.ru/");
 
-        //Шаг 2
-        //Ищем категории по id
+        //РЁР°Рі 2
+        //РС‰РµРј РєР°С‚РµРіРѕСЂРёРё РїРѕ id
         Select select = new Select(driver.findElement(By.cssSelector("#category")));
 
-        //Выводим все найденые элементы
+        //Р’С‹РІРѕРґРёРј РІСЃРµ РЅР°Р№РґРµРЅС‹Рµ СЌР»РµРјРµРЅС‚С‹
         select.getOptions().forEach(webElement -> {
             System.out.println(webElement.getText());
         });
 
-        //Выбираем категорию
-        select.selectByVisibleText("Оргтехника и расходники");
+        //Р’С‹Р±РёСЂР°РµРј РєР°С‚РµРіРѕСЂРёСЋ
+        select.selectByVisibleText("РћСЂРіС‚РµС…РЅРёРєР° Рё СЂР°СЃС…РѕРґРЅРёРєРё");
 
-        //Шаг 3
-        //Ищем поле ввода и вписываем "Принтер"
-        driver.findElement(By.xpath("//input[@data-marker='search-form/suggest']")).sendKeys("Принтер");
+        //РЁР°Рі 3
+        //РС‰РµРј РїРѕР»Рµ РІРІРѕРґР° Рё РІРїРёСЃС‹РІР°РµРј "РџСЂРёРЅС‚РµСЂ"
+        driver.findElement(By.xpath("//input[@data-marker='search-form/suggest']")).sendKeys("РџСЂРёРЅС‚РµСЂ");
 
-        //Шаг 4
-        //Ищем элемент выбора региона и кликаем по нему
+        //РЁР°Рі 4
+        //РС‰РµРј СЌР»РµРјРµРЅС‚ РІС‹Р±РѕСЂР° СЂРµРіРёРѕРЅР° Рё РєР»РёРєР°РµРј РїРѕ РЅРµРјСѓ
         driver.findElement(By.xpath("//div[@data-marker='search-form/region']")).click();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
-        //В новом окне ищем поле вывода региона и вписываем "Владивосток"
-        driver.findElement(By.xpath("//div/input[@data-marker='popup-location/region/input']")).sendKeys("Владивосток");
+        //Р’ РЅРѕРІРѕРј РѕРєРЅРµ РёС‰РµРј РїРѕР»Рµ РІС‹РІРѕРґР° СЂРµРіРёРѕРЅР° Рё РІРїРёСЃС‹РІР°РµРј "Р’Р»Р°РґРёРІРѕСЃС‚РѕРє"
+        driver.findElement(By.xpath("//div/input[@data-marker='popup-location/region/input']")).sendKeys("Р’Р»Р°РґРёРІРѕСЃС‚РѕРє");
 
-        //Шаг 5
-        //Ищем первый элемент из выпадающего списка и кликаем по нему
+        //РЁР°Рі 5
+        //РС‰РµРј РїРµСЂРІС‹Р№ СЌР»РµРјРµРЅС‚ РёР· РІС‹РїР°РґР°СЋС‰РµРіРѕ СЃРїРёСЃРєР° Рё РєР»РёРєР°РµРј РїРѕ РЅРµРјСѓ
         WebElement searchRegion = new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(webDriver -> driver.findElement(By.xpath("//li[@data-marker='suggest(0)']")));
         System.out.println(searchRegion.getText());
@@ -55,28 +55,28 @@ public class AvitoSelen {
         driver.findElement(By.xpath("//button[@data-marker='popup-location/save-button']")).click();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
-        //Шаг 6
-        //Ищем checkbox и делаем проверку, если неактивне, то кликаем по нему и нажимаем кнопку
+        //РЁР°Рі 6
+        //РС‰РµРј checkbox Рё РґРµР»Р°РµРј РїСЂРѕРІРµСЂРєСѓ, РµСЃР»Рё РЅРµР°РєС‚РёРІРЅРµ, С‚Рѕ РєР»РёРєР°РµРј РїРѕ РЅРµРјСѓ Рё РЅР°Р¶РёРјР°РµРј РєРЅРѕРїРєСѓ
         WebElement checkbox = driver.findElement(By.xpath("//input[@data-marker='delivery-filter/input']"));
         if (!checkbox.isSelected()) {
             checkbox.sendKeys(Keys.SPACE);
         }
         driver.findElement(By.xpath("//button[@data-marker='search-filters/submit-button']")).click();
 
-        //Шаг 7
-        //Ищем элементы фильтра и выбираем соответствующее значение
+        //РЁР°Рі 7
+        //РС‰РµРј СЌР»РµРјРµРЅС‚С‹ С„РёР»СЊС‚СЂР° Рё РІС‹Р±РёСЂР°РµРј СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РµРµ Р·РЅР°С‡РµРЅРёРµ
         Select selectFilter = new Select(driver.findElement(By.xpath(
                 "//div[contains(@class, 'index-content')]" +
                         "//select[contains(@class, 'select-select') and position()=1]")));
 
-        selectFilter.selectByVisibleText("Дороже");
+        selectFilter.selectByVisibleText("Р”РѕСЂРѕР¶Рµ");
 
-        //Шаг 8
-        //В List будут находится найденные элементы
+        //РЁР°Рі 8
+        //Р’ List Р±СѓРґСѓС‚ РЅР°С…РѕРґРёС‚СЃСЏ РЅР°Р№РґРµРЅРЅС‹Рµ СЌР»РµРјРµРЅС‚С‹
         List<WebElement> selectProduct = driver.findElements(By.xpath("//div[@data-marker='catalog-serp']" +
                 "/div[@data-marker='item']"));
 
-        //Итерируемся по элементам в List
+        //РС‚РµСЂРёСЂСѓРµРјСЃСЏ РїРѕ СЌР»РµРјРµРЅС‚Р°Рј РІ List
         for (int i = 0; i < 3; i++) {
             System.out.println(selectProduct.get(i).findElement(By.xpath(".//a[@data-marker='item-title']")).getText());
             System.out.println(selectProduct.get(i).findElement(By.xpath(".//span[@data-marker='item-price']")).getText());
