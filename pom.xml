@@ -14,6 +14,7 @@
         <module>homeWork_3</module>
         <module>calculator</module>
         <module>restapiTest</module>
+        <module>seleniumAvito</module>
     </modules>
 
     <properties>
