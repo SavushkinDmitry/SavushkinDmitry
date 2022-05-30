@@ -15,6 +15,7 @@
         <module>calculator</module>
         <module>restapiTest</module>
         <module>seleniumAvito</module>
+        <module>allureSelenium</module>
     </modules>
 
     <properties>
