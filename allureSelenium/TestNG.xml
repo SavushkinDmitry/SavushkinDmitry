@@ -3,7 +3,7 @@
 <suite name="Test Suite" verbose="2">
     <test name="Avito step">
         <classes>
-            <class name="AvitoStep" />
+            <class name="AvitoStepTest" />
         </classes>
     </test>
 </suite>
