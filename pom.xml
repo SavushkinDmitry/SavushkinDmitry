@@ -16,6 +16,7 @@
         <module>restapiTest</module>
         <module>seleniumAvito</module>
         <module>allureSelenium</module>
+        <module>cucumber_avito</module>
     </modules>
 
     <properties>
