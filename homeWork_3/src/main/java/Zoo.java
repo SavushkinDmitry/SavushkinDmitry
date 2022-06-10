@@ -30,8 +30,8 @@ public class Zoo {
 
         carnivorousAviary.addAnimal(wolf);
         herbivoreAviary.addAnimal(sheep);
-        herbivoreAviary.addAnimal(sheeps); //Тоже не добавится, так как поля объекта sheeps идентичны с объектом sheep
-        herbivoreAviary.addAnimal(sheep); //Объект не добавится и выведит соответствующее сообщение
+        herbivoreAviary.addAnimal(sheeps); //РўРѕР¶Рµ РЅРµ РґРѕР±Р°РІРёС‚СЃСЏ, С‚Р°Рє РєР°Рє РїРѕР»СЏ РѕР±СЉРµРєС‚Р° sheeps РёРґРµРЅС‚РёС‡РЅС‹ СЃ РѕР±СЉРµРєС‚РѕРј sheep
+        herbivoreAviary.addAnimal(sheep); //РћР±СЉРµРєС‚ РЅРµ РґРѕР±Р°РІРёС‚СЃСЏ Рё РІС‹РІРµРґРёС‚ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РµРµ СЃРѕРѕР±С‰РµРЅРёРµ
         herbivoreAviary.addAnimal(girrafe);
 
         herbivoreAviary.removeAnimal(sheep);
