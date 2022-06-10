@@ -16,10 +16,17 @@ public class Herbivore extends Animal {
         if (_food instanceof Grass) {
             System.out.println(getNameAnimals() + " will eat " + _food.getName());
             addSatiety(_food);
+<<<<<<< Updated upstream
             System.out.println("Прибавлено сытости: " + getSatiety());
         } else {
             System.out.println(getNameAnimals() + " don't will eat " + _food.getName());
             System.out.println("Сытость " + getNameAnimals() + ": " + getSatiety());
+=======
+            System.out.println("Satiety is added: " + getSatiety());
+        } else {
+            System.out.println(getNameAnimals() + " don't will eat " + _food.getName());
+            System.out.println("Satiety " + getNameAnimals() + ": " + getSatiety());
+>>>>>>> Stashed changes
         }
     }
 
