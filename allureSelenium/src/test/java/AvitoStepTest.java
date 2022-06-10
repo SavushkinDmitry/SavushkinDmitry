@@ -1,6 +1,4 @@
-import io.qameta.allure.Attachment;
-import io.qameta.allure.Description;
-import io.qameta.allure.Step;
+import io.qameta.allure.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -26,18 +24,14 @@ public class AvitoStepTest {
     WebDriver driver;
     WebDriverWait wait;
 
-    @Description("Инициализация драйвера, переход к сайта Avito")
-    @Step("Подготовка к выполнению шагов")
+    @Description("Инициализация драйвера")
     @BeforeClass
     void setUp() {
         System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe");
 
         driver = new ChromeDriver();
-        driver.get("https://www.avito.ru/");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     @Attachment(value = "Screenshot", type = "image/png")
@@ -51,14 +45,34 @@ public class AvitoStepTest {
         return byteArrayOutputStream.toByteArray();
     }
 
-    @Attachment(value = "Результат вывода")
+    @Attachment(value = "Результат вывода", type = "text/plain")
     public String saveStringResult(String res) {
         return res;
     }
 
-    @Description("Поиск выпадающего списка категорий товара и выбор соответствующего значения")
+    @Test(description = "Запуск тестируемых методов")
+    void runMethodTest() {
+        getResource();
+        selectCategory();
+        searchProduct();
+        selectRegion();
+        searchRegion();
+        checkboxClick();
+        selectFilter();
+        searchAndSelectProduct();
+    }
+
+    @Step("Переход к ресурсу авито")
+    void getResource() {
+        driver.get("https://www.avito.ru/");
+
+        Screenshot screen = new AShot().takeScreenshot(driver);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='app']")));
+        captureScreenshot(screen);
+    }
+
     @Step("Выбор категории товаров")
-    @Test(priority = 1)
     void selectCategory() {
         Select select = new Select(driver.findElement(By.cssSelector("#category")));
         select.selectByVisibleText("Оргтехника и расходники");
@@ -67,9 +81,7 @@ public class AvitoStepTest {
         captureScreenshot(screen);
     }
 
-    @Description("Поиск поля ввода названия товаров и ввод соответвующего значения")
     @Step("Поиск товара")
-    @Test(priority = 2)
     void searchProduct() {
         driver.findElement(By.xpath("//input[@data-marker='search-form/suggest']")).sendKeys("Принтер");
 
@@ -77,9 +89,7 @@ public class AvitoStepTest {
         captureScreenshot(screen);
     }
 
-    @Description("Поиск выпадающего списка с регионами")
     @Step("Список регионов")
-    @Test(priority = 3)
     void selectRegion() {
         driver.findElement(By.xpath("//div[@data-marker='search-form/region']")).click();
 
@@ -87,9 +97,7 @@ public class AvitoStepTest {
         captureScreenshot(screen);
     }
 
-    @Description("В полле ввода вписываем наименование региона и в выпадающем списке, выбираем самый первый вариант")
     @Step("Выбор региона из списка регионов")
-    @Test(priority = 4)
     void searchRegion() {
         driver.findElement(By.xpath("//div/input[@data-marker='popup-location/region/input']")).sendKeys("Владивосток");
         WebElement searchRegion = driver.findElement(By.xpath("//li[@data-marker='suggest(0)']"));
@@ -98,14 +106,13 @@ public class AvitoStepTest {
         Screenshot screen = new AShot().coordsProvider(new WebDriverCoordsProvider()).takeScreenshot(driver);
         captureScreenshot(screen);
 
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(searchRegion));
         searchRegion.click();
         driver.findElement(By.xpath("//button[@data-marker='popup-location/save-button']")).click();
     }
 
-    @Description("Поиск чекбокса")
     @Step("Товары с доставкой авито")
-    @Test(priority = 5)
     void checkboxClick() {
         WebElement checkbox = driver.findElement(By.xpath("//input[@data-marker='delivery-filter/input']"));
         if (!checkbox.isSelected()) {
@@ -116,9 +123,7 @@ public class AvitoStepTest {
         driver.findElement(By.xpath("//button[@data-marker='search-filters/submit-button']")).click();
     }
 
-    @Description("Поиск фильтра цен на товары и выбор соответствующего значения")
     @Step("Фильтрация по ценам")
-    @Test(priority = 6)
     void selectFilter() {
         Select selectFilter = new Select(driver.findElement(By.xpath(
                 "//div[contains(@class, 'index-content')]" +
@@ -129,9 +134,7 @@ public class AvitoStepTest {
         captureScreenshot(screen);
     }
 
-    @Description("Поиск дорогих товаров, сохранение найденных товаров и вывод первых трёх товаров в списке")
     @Step("Найти 3 самых дорогих товара")
-    @Test(priority = 7)
     void searchAndSelectProduct() {
         By itemTitle = By.xpath(".//a[@data-marker='item-title']");
         By itemPrice = By.xpath(".//span[@data-marker='item-price']");
@@ -142,14 +145,13 @@ public class AvitoStepTest {
         for (int i = 0; i < 3; i++) {
             String result = "Наименование товара: " + titleProduct.get(i).getText() + "\n Цена товара: " + priceProduct.get(i).getText() + " (" + i + ")";
             System.out.println(result);
-            saveStringResult(result);
+            Allure.addAttachment("Console result", result);
         }
 
         Screenshot screen = new AShot().takeScreenshot(driver);
         captureScreenshot(screen);
     }
 
-    @Description("После окончание шагов выходим из браузера")
     @Step("Выход из браузера")
     @AfterClass
     void tearDown() {
