@@ -1,4 +1,7 @@
-import io.qameta.allure.*;
+import io.qameta.allure.Allure;
+import io.qameta.allure.Attachment;
+import io.qameta.allure.Description;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -34,14 +37,18 @@ public class AvitoStepTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
-    @Attachment(value = "Screenshot", type = "image/png")
+    @Attachment(value = "Скриншоты", type = "image/png")
     public byte[] captureScreenshot(Screenshot screenshot) {
+        //Создаём объект в котором будут записаны данные в массив байтов
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         try {
+            //Записываем скриншот, указываем формат и куда будет записываться наш скриншот
+            // (в начало текущего указателя потока)
             ImageIO.write(screenshot.getImage(), "png", byteArrayOutputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        //С помощью toByteArray получаем данные
         return byteArrayOutputStream.toByteArray();
     }
 
@@ -50,7 +57,7 @@ public class AvitoStepTest {
         return res;
     }
 
-    @Test(description = "Запуск тестируемых методов")
+    @Test(description = "Запуск методов")
     void runMethodTest() {
         getResource();
         selectCategory();
@@ -66,9 +73,9 @@ public class AvitoStepTest {
     void getResource() {
         driver.get("https://www.avito.ru/");
 
-        Screenshot screen = new AShot().takeScreenshot(driver);
         wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='app']")));
+        Screenshot screen = new AShot().takeScreenshot(driver);
         captureScreenshot(screen);
     }
 
@@ -103,7 +110,7 @@ public class AvitoStepTest {
         WebElement searchRegion = driver.findElement(By.xpath("//li[@data-marker='suggest(0)']"));
         System.out.println(searchRegion.getText());
 
-        Screenshot screen = new AShot().coordsProvider(new WebDriverCoordsProvider()).takeScreenshot(driver);
+        Screenshot screen = new AShot().takeScreenshot(driver);
         captureScreenshot(screen);
 
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -118,6 +125,7 @@ public class AvitoStepTest {
         if (!checkbox.isSelected()) {
             checkbox.sendKeys(Keys.SPACE);
         }
+
         Screenshot screen = new AShot().coordsProvider(new WebDriverCoordsProvider()).takeScreenshot(driver);
         captureScreenshot(screen);
         driver.findElement(By.xpath("//button[@data-marker='search-filters/submit-button']")).click();
@@ -145,7 +153,7 @@ public class AvitoStepTest {
         for (int i = 0; i < 3; i++) {
             String result = "Наименование товара: " + titleProduct.get(i).getText() + "\n Цена товара: " + priceProduct.get(i).getText() + " (" + i + ")";
             System.out.println(result);
-            Allure.addAttachment("Console result", result);
+            Allure.addAttachment("Результат с консоли: ", result);
         }
 
         Screenshot screen = new AShot().takeScreenshot(driver);
