@@ -27,16 +27,16 @@ public class Pages {
 
     @Attachment(value = "Screenshot", type = "image/png")
     public static byte[] captureScreenshot(Screenshot screenshot) {
-        //Создаём объект в котором будут записаны данные в массив байтов
+        //РЎРѕР·РґР°С‘Рј РѕР±СЉРµРєС‚ РІ РєРѕС‚РѕСЂРѕРј Р±СѓРґСѓС‚ Р·Р°РїРёСЃР°РЅС‹ РґР°РЅРЅС‹Рµ РІ РјР°СЃСЃРёРІ Р±Р°Р№С‚РѕРІ
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         try {
-            //Записываем скриншот, указываем формат и куда будет записываться наш скриншот
-            // (в начало текущего указателя потока)
+            //Р—Р°РїРёСЃС‹РІР°РµРј СЃРєСЂРёРЅС€РѕС‚, СѓРєР°Р·С‹РІР°РµРј С„РѕСЂРјР°С‚ Рё РєСѓРґР° Р±СѓРґРµС‚ Р·Р°РїРёСЃС‹РІР°С‚СЊСЃСЏ РЅР°С€ СЃРєСЂРёРЅС€РѕС‚
+            // (РІ РЅР°С‡Р°Р»Рѕ С‚РµРєСѓС‰РµРіРѕ СѓРєР°Р·Р°С‚РµР»СЏ РїРѕС‚РѕРєР°)
             ImageIO.write(screenshot.getImage(), "png", byteArrayOutputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //С помощью toByteArray получаем данные
+        //РЎ РїРѕРјРѕС‰СЊСЋ toByteArray РїРѕР»СѓС‡Р°РµРј РґР°РЅРЅС‹Рµ
         return byteArrayOutputStream.toByteArray();
     }
 
@@ -45,7 +45,7 @@ public class Pages {
         captureScreenshot(screen);
     }
 
-    @Attachment(value = "Результат вывода в консоль")
+    @Attachment(value = "Р РµР·СѓР»СЊС‚Р°С‚ РІС‹РІРѕРґР° РІ РєРѕРЅСЃРѕР»СЊ")
     public static String saveStringResult(String result) {
         return result;
     }
